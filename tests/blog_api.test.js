@@ -49,7 +49,7 @@ test('Missing Likes on POST request will default to 0', async() => {
 
 })
 
-test ('title and url properties are missing from the request data return 404', async()=>{
+test ('title and url properties are missing from the request data return 400', async () => {
   const modifiedBlog = { ...helper.newBlog }
   delete modifiedBlog.title
   delete modifiedBlog.url
