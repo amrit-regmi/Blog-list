@@ -1,0 +1,10 @@
+POST  http://localhost:3003/api/blogs/ HTTP/1.1
+content-type: application/json
+Authorization:bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QgdXNlciIsImlkIjoiNWYyMDYzNTczMjY2NWE5MGU4MWE1MjEyIiwiaWF0IjoxNTk1OTY4NTU3fQ.wpuKPnoAJD8eMZh0Te2uqJye1UtvaRXDKxEx4cRyyLY
+
+{
+    "title": "Test Title 9",
+    "auther": "test auther 9",
+    "url": "http://test.com",
+    "likes":21
+}

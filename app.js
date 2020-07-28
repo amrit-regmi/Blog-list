@@ -9,6 +9,7 @@ const usersRouter = require('./controllers/users')
 const loginRouter = require('./controllers/login')
 const mongoose = require('mongoose')
 const errorHandler = require ('./utils/errorHandler')
+const tokenExtractor= require('./utils/middleware')
 
 mongoose.set('useFindAndModify', false)
 const mongoUrl = config.MONGODB_URI
@@ -20,6 +21,7 @@ mongoose.connect(mongoUrl, { useCreateIndex:true, useNewUrlParser: true, useUnif
 
 app.use(cors())
 app.use(express.json())
+app.use(tokenExtractor)
 app.use('/api/blogs', blogsRouter)
 app.use('/api/users', usersRouter)
 app.use('/api/login', loginRouter)
