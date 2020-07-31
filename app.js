@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const express = require('express')
 const app = express()
 require('express-async-errors')
@@ -22,6 +23,12 @@ mongoose.connect(mongoUrl, { useCreateIndex:true, useNewUrlParser: true, useUnif
 app.use(cors())
 app.use(express.json())
 app.use(tokenExtractor)
+
+if (process.env.NODE_ENV === 'test') {
+  const testsRouter = require('./controllers/tests')
+  app.use('/api/tests', testsRouter)
+}
+
 app.use('/api/blogs', blogsRouter)
 app.use('/api/users', usersRouter)
 app.use('/api/login', loginRouter)
