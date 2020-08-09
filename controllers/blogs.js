@@ -13,6 +13,14 @@ blogsRouter.get('/:id', async (request, response) => {
   response.json(blogs).end()
 })
 
+
+blogsRouter.post('/:id/comments',async(request,response) => {
+  const updated = await Blog.findByIdAndUpdate( request.params.id ,{ $push: { ...request.body } },{ new:true , runValidators: true,context: 'query' })
+  response.json(updated).end()
+})
+
+
+
 blogsRouter.post('/', async (request, response) => {
   // eslint-disable-next-line no-undef
   const decodedToken = jwt.verify(request.token, process.env.SECRET)
@@ -33,6 +41,9 @@ blogsRouter.post('/', async (request, response) => {
   await User.findByIdAndUpdate(userId, udateUserObject, { new:true , runValidators: true,context: 'query' })
   response.status(201).json(result).end()
 })
+
+
+
 
 blogsRouter.delete('/:id', async (request, response) => {
   // eslint-disable-next-line no-undef
@@ -58,6 +69,9 @@ blogsRouter.delete('/:id', async (request, response) => {
   await user.save()
   response.status(204).end()
 })
+
+
+
 
 blogsRouter.put('/:id', async (request, response) => {
   const body = request.body
